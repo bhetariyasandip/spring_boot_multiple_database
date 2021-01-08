@@ -1,5 +1,7 @@
 package com.sandip.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +27,12 @@ public class Controller {
 	}
 	
 	@GetMapping(value = "/read/{id}")
-    public User getChequeById(@PathVariable Long id) throws Exception{
-		return null;
+    public User readById(@PathVariable Long id) throws Exception{
+		return userService.readById(id);
     }
+	
+	@GetMapping("/readAll")
+	public List<User> readAll()throws Exception{
+		return userService.readAll();
+	}
 }

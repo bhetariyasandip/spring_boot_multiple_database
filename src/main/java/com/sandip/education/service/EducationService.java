@@ -9,5 +9,7 @@ public interface EducationService {
 
 	List<Education> saveEduction(List<EducationWebModel> educations, Long userId) throws Exception;
 
+	List<Education> readByIdEduction(Long id) throws Exception;
+
 	
 }

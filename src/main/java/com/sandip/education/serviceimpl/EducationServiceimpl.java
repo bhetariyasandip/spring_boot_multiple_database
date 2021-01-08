@@ -34,4 +34,10 @@ public class EducationServiceimpl implements EducationService {
 		return educationsList;
 	}
 
+	@Override
+	public List<Education> readByIdEduction(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return educationReporsitory.readByUserId(id);
+	}
+
 }

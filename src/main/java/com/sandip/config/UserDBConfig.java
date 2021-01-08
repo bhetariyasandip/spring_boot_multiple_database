@@ -46,6 +46,7 @@ public class UserDBConfig {
 	@Bean
 	public DataSource mysqlUserDataSource() {
 		
+		@SuppressWarnings("rawtypes")
 		DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName(env.getProperty("spring.datasource.driver-class-name"));
         dataSourceBuilder.url(env.getProperty("spring.user.datasource.url"));
