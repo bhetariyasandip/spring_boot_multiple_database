@@ -23,7 +23,6 @@ public class EducationServiceimpl implements EducationService {
 	
 	@Override
 	public List<Education> saveEduction(List<EducationWebModel> educations, Long userId) throws Exception {
-		// TODO Auto-generated method stub
 		List<Education> educationsList = new ArrayList<>();
 		for (EducationWebModel educationWebModel : educations) {
 			Education education = new Education();
@@ -36,8 +35,20 @@ public class EducationServiceimpl implements EducationService {
 
 	@Override
 	public List<Education> readByIdEduction(Long id) throws Exception {
-		// TODO Auto-generated method stub
 		return educationReporsitory.readByUserId(id);
+	}
+
+	@Override
+	public List<Education> updateEduction(List<EducationWebModel> educations, Long id) throws Exception {
+		educationReporsitory.deleteAll(educationReporsitory.readByUserId(id));
+		List<Education> educationsList = new ArrayList<>();
+		for (EducationWebModel educationWebModel : educations) {
+			Education education = new Education();
+			BeanUtils.copyProperties(educationWebModel, education);
+			education.setUserId(id);
+			educationsList.add(educationReporsitory.save(education));
+		}
+		return educationsList;
 	}
 
 }

@@ -13,5 +13,7 @@ public interface UserService {
 
 	List<User> readAll() throws Exception;
 
+	User updateUser(UserWebModel user, Long id) throws Exception;
+
 	
 }

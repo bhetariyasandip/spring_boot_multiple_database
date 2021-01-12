@@ -29,7 +29,6 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public User saveUser(UserWebModel userWeb) throws Exception {
-		// TODO Auto-generated method stub
 		User user = new User();
 		BeanUtils.copyProperties(userWeb, user);
 		user.setCreatedon(new Date());
@@ -40,7 +39,6 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public User readById(Long id) throws Exception {
-		// TODO Auto-generated method stub
 		Optional<User> userOptional = userReporsitory.findById(id);
 		if(userOptional.isPresent()) {
 			User user = userOptional.get();
@@ -52,7 +50,6 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public List<User> readAll() throws Exception {
-		// TODO Auto-generated method stub
 		List<User> userLst = userReporsitory.findAll();
 		List<User> userList = new ArrayList<>(); 
 		for (User user : userLst) {
@@ -60,6 +57,17 @@ public class UserServiceimpl implements UserService {
 			userList.add(user);
 		}
 		return userList;
+	}
+
+	@Override
+	public User updateUser(UserWebModel userWeb, Long id) throws Exception {
+		User user = new User();
+		BeanUtils.copyProperties(userWeb, user);
+		user.setId(id);
+		user.setCreatedon(new Date());
+		user=userReporsitory.save(user);
+		user.setEducations(educationService.updateEduction(userWeb.getEducations(), user.getId()));
+		return user;
 	}
 	
 	

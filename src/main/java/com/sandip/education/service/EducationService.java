@@ -11,5 +11,7 @@ public interface EducationService {
 
 	List<Education> readByIdEduction(Long id) throws Exception;
 
+	List<Education> updateEduction(List<EducationWebModel> educations, Long id) throws Exception;
+
 	
 }
